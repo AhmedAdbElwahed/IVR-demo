@@ -1,0 +1,3 @@
+async logCall(callerNumber) {}
+async updateCallStatus(id, status, agentExtension = null, duration = 0, recordingPath = null) {}
+async logTicket(freshdeskTicketId, callId, issueType) {}

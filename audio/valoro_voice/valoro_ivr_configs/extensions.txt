@@ -1,0 +1,140 @@
+[from-internal]
+exten => 1000,1,NoOp(Starting Valoro IVR)
+ same => n,Goto(ivr-valoro,s,1)
+
+
+[ivr-valoro]
+exten => s,1,Answer()
+ same => n,Set(CDR(userfield)=IVR_START)
+ same => n,Set(CALLER_PHONE=${CALLERID(num)})
+ same => n,Set(CALLER_NAME=${CALLERID(name)})
+ same => n,Playback(valoro/valoro-welcome)
+ same => n,Playback(valoro/valoro-main-menu)
+ same => n,WaitExten(10)
+
+; 1 → Sales
+exten => 1,1,Goto(ivr-sales,s,1)
+
+; 2 → Support
+exten => 2,1,Goto(ivr-support,s,1)
+
+; 3 → Billing
+exten => 3,1,Goto(ivr-billing,s,1)
+
+; 0 → Operator (always)
+exten => 0,1,Goto(ivr-operator,s,1)
+
+; Invalid
+exten => i,1,Playback(valoro-invalid)
+ same => n,Goto(ivr-valoro,s,2)
+
+; Timeout
+exten => t,1,Playback(valoro-timeout)
+ same => n,Goto(ivr-valoro,s,2)
+
+
+[ivr-sales]
+exten => s,1,NoOp(Sales Menu)
+ same => n,Playback(valoro/valoro-sales-menu)
+ same => n,WaitExten(10)
+
+; Pricing inquiry
+exten => 1,1,Set(DEPT=sales)
+ same => n,Set(TICKET_TYPE=pricing_inquiry)
+ same => n,Playback(valoro/valoro-sales-pricing)
+ same => n,Goto(ivr-create-ticket,s,1)
+
+; Callback request
+exten => 2,1,Set(DEPT=sales)
+ same => n,Set(TICKET_TYPE=callback_request)
+ same => n,Playback(valoro/valoro-sales-callback)
+ same => n,Goto(ivr-create-ticket,s,1)
+
+; Operator
+exten => 0,1,Goto(ivr-operator,s,1)
+
+; Invalid
+exten => i,1,Playback(valoro/valoro-invalid)
+ same => n,Goto(ivr-sales,s,1)
+
+; Timeout
+exten => t,1,Playback(valoro/valoro-timeout)
+ same => n,Goto(ivr-sales,s,1)
+
+
+[ivr-support]
+exten => s,1,NoOp(Support Menu)
+ same => n,Playback(valoro/valoro-support-menu)
+ same => n,WaitExten(10)
+
+; Technical issue
+exten => 1,1,Set(DEPT=support)
+ same => n,Set(TICKET_TYPE=technical_issue)
+ same => n,Playback(valoro/valoro-support-tech)
+ same => n,Goto(ivr-create-ticket,s,1)
+
+; Account issue
+exten => 2,1,Set(DEPT=support)
+ same => n,Set(TICKET_TYPE=account_issue)
+ same => n,Playback(valoro/valoro-support-account)
+ same => n,Goto(ivr-create-ticket,s,1)
+
+; Operator
+exten => 0,1,Goto(ivr-operator,s,1)
+
+; Invalid
+exten => i,1,Playback(valoro/valoro-invalid)
+ same => n,Goto(ivr-support,s,1)
+
+; Timeout
+exten => t,1,Playback(valoro/valoro-timeout)
+ same => n,Goto(ivr-support,s,1)
+
+
+[ivr-billing]
+exten => s,1,NoOp(Billing Menu)
+ same => n,Playback(valoro/valoro-billing-menu)
+ same => n,WaitExten(10)
+
+; Invoice inquiry
+exten => 1,1,Set(DEPT=billing)
+ same => n,Set(TICKET_TYPE=invoice_inquiry)
+ same => n,Playback(valoro/valoro-billing-invoice)
+ same => n,Goto(ivr-create-ticket,s,1)
+
+; Payment issue
+exten => 2,1,Set(DEPT=billing)
+ same => n,Set(TICKET_TYPE=payment_issue)
+ same => n,Playback(valoro/valoro-billing-payment)
+ same => n,Goto(ivr-create-ticket,s,1)
+
+; Operator
+exten => 0,1,Goto(ivr-operator,s,1)
+
+; Invalid
+exten => i,1,Playback(valoro/valoro-invalid)
+ same => n,Goto(ivr-billing,s,1)
+
+; Timeout
+exten => t,1,Playback(valoro/valoro-timeout)
+ same => n,Goto(ivr-billing,s,1)
+
+
+[ivr-operator]
+exten => s,1,NoOp(Operator Requested)
+ same => n,Playback(valoro/valoro-operator)
+ same => n,Set(DEPT=operator)
+ same => n,Set(TICKET_TYPE=live_agent_request)
+ same => n,Goto(ivr-create-ticket,s,1)
+
+[ivr-create-ticket]
+exten => s,1,NoOp(Creating Freshdesk Ticket)
+ same => n,Stasis(freshdesk-ivr,${DEPT},${TICKET_TYPE})
+ same => n,Playback(valoro/valoro-ticket-created)
+ same => n,Playback(custom/valoro/valoro-goodbye)
+ same => n,Hangup()
+
+
+
+
+

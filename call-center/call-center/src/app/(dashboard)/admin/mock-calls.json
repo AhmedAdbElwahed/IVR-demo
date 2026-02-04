@@ -1,0 +1,113 @@
+[
+  {
+    "id": 12,
+    "callerNumber": "103",
+    "agentExtension": null,
+    "call_duration": 123,
+    "status": "IVR_COMPLAINT",
+    "recordingPath": "/var/spool/asterisk/recording/tech-1768395037.62-1768395092932.wav",
+    "recordingDuration": 55,
+    "createdAt": "2026-01-14T12:50:37.312Z",
+    "ticket": {
+      "id": 2,
+      "freshdeskTicketId": "99914",
+      "callId": 12,
+      "issueType": "account_issue",
+      "createdAt": "2026-01-14T12:52:31.220Z"
+    }
+  },
+  {
+    "id": 11,
+    "callerNumber": "103",
+    "agentExtension": null,
+    "call_duration": 66,
+    "status": "IVR_COMPLAINT",
+    "recordingPath": "/var/spool/asterisk/recording/tech-1768392909.60-1768392959084.wav",
+    "recordingDuration": 6,
+    "createdAt": "2026-01-14T12:15:09.217Z",
+    "ticket": {
+      "id": 1,
+      "freshdeskTicketId": "99969",
+      "callId": 11,
+      "issueType": "account_issue",
+      "createdAt": "2026-01-14T12:16:06.215Z"
+    }
+  },
+  {
+    "id": 10,
+    "callerNumber": "103",
+    "agentExtension": null,
+    "call_duration": 64,
+    "status": "IVR_COMPLAINT",
+    "recordingPath": "/var/spool/asterisk/recording/tech-1768392679.58-1768392727949.wav",
+    "recordingDuration": 6,
+    "createdAt": "2026-01-14T12:11:19.327Z",
+    "ticket": null
+  },
+  {
+    "id": 9,
+    "callerNumber": "103",
+    "agentExtension": null,
+    "call_duration": 0,
+    "status": "IVR_COMPLAINT",
+    "recordingPath": "/var/spool/asterisk/recording/tech-1768392373.56-1768392423877.wav",
+    "recordingDuration": 6,
+    "createdAt": "2026-01-14T12:06:13.994Z",
+    "ticket": null
+  },
+  {
+    "id": 8,
+    "callerNumber": "103",
+    "agentExtension": null,
+    "call_duration": 0,
+    "status": "IVR_ONLY",
+    "recordingPath": null,
+    "recordingDuration": 0,
+    "createdAt": "2026-01-14T12:02:31.313Z",
+    "ticket": null
+  },
+  {
+    "id": 7,
+    "callerNumber": "103",
+    "agentExtension": null,
+    "call_duration": 0,
+    "status": "IVR_ONLY",
+    "recordingPath": null,
+    "recordingDuration": 0,
+    "createdAt": "2026-01-14T12:00:08.428Z",
+    "ticket": null
+  },
+  {
+    "id": 6,
+    "callerNumber": "103",
+    "agentExtension": null,
+    "call_duration": 0,
+    "status": "IVR_ONLY",
+    "recordingPath": null,
+    "recordingDuration": 0,
+    "createdAt": "2026-01-14T11:59:05.902Z",
+    "ticket": null
+  },
+  {
+    "id": 5,
+    "callerNumber": "103",
+    "agentExtension": null,
+    "call_duration": 0,
+    "status": "IVR_ONLY",
+    "recordingPath": null,
+    "recordingDuration": 0,
+    "createdAt": "2026-01-14T11:53:26.737Z",
+    "ticket": null
+  },
+  {
+    "id": 4,
+    "callerNumber": "103",
+    "agentExtension": null,
+    "call_duration": 0,
+    "status": "IVR_ONLY",
+    "recordingPath": null,
+    "recordingDuration": 0,
+    "createdAt": "2026-01-14T11:50:23.784Z",
+    "ticket": null
+  }
+]
